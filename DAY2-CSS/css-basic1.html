@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        /* 요소선택자 */
+        p {
+            color:white;
+            background: black;
+        }
+
+        /* 클래스 선택자 */
+        .myclass{
+            color:white;
+            background-color:red;
+        }
+
+        /* 아이디 선택자  */
+        #title{
+            color:white;
+            background: blue;
+        }
+
+        /* HTML요소의 값을 기준으로 해서 선택된 스타일 적용하기 */
+
+        a[href]{ color:black;}
+
+        a[href="www.yes24.com"]{ background-color:blue;}
+        a[href*="yes24"]{ background:green;}
+        a[href^="http"]{ background:yellow;}
+        a[href$="kr"]{ background:purple;}
+
+        /* 가상 클래스  선택자 적용하기  */
+        /* 기본링크시 보여지는 스타일-투명/밑줄제거 */
+        a:link{
+            color:blue;
+            background-color: transparent; 
+            text-decoration: none;
+        }
+
+        /* 기 방문한 링크의 스타일 처리 */
+        a:visited {
+            color:pink;
+            background-color: transparent; 
+        }
+
+        /* 마우스오버시점 스타일 정의  */
+        a:hover{
+            color:red;
+            background-color: transparent; 
+            text-decoration: none;
+        }
+
+        /* 클릭시점 스타일 정의  */
+        a:active{
+            color:yellow;
+            background-color: transparent; 
+            text-decoration: none;
+        }
+
+
+        /* 하위선택자 스타일정의  */
+
+        /* ul태그 아래 모든 a태그의 스타일 정의  */
+        ul a{
+            color:orange !important;
+            background-color: aquamarine;
+        }
+
+
+        /* 자식 선택자-부모요소 바로 하단에 위치하는 요소만 스타일 하기 */
+        ol>a{
+            color:yellow !important;
+            background: black;
+        }
+
+        /* 인접형제 선택자-같은 레벨내 요소의 첫번쨰 요소 스타일 하기  */
+        h2+p{
+            color:white;
+            background-color: blue !important;
+        }
+
+        /* 인접형제 선택자-같은 레벨내 요소의 모든 요소 스타일 하기  */
+        h2~p{
+            color:white;
+            background-color: red;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>선택자 사용하기 </h1>
+
+    <p>요소 선택자 적용 부분</p>
+
+    <h2 class="myclass">클래스 선택자 적용</h2>
+
+    <h3 class="myclass">클래스 선택자 적용2</h3>
+
+    <h3>클래스 선택자 적용3-클래스미적용</h3>
+
+    <h3 id="title">아이디 선택자 적용</h3>
+
+    <hr>
+    <h1>속성 선택자 사용하기 </h1>
+    <div>
+        <a href="www.yes24.com">YES24</a> <br>
+        <a href="http://www.yes24.com">YES24</a> <br>
+        <a href="www.google.co.kr">GOOGLE</a> <br>
+        <a href="www.daum.net">DAUM</a> <br>
+    </div>
+
+    <hr>
+    <h1>가상클래스-개발자 정의 클래스가 아닌 html자체에서 제공하는 기본스타일 제어하기</h1>
+
+    <a href="https://msoftware.co.kr" target="_blank">엠소프트웨어</a> <br>
+
+
+    <hr>
+    <h1>복합선택자-하위/</h1>
+    <ul>
+        <a href="#">링크정보</a>
+        <li>
+            <a href="#">항목1</a>
+        </li>
+        <li>
+            <p>항목2</p>
+        </li>
+        <li>
+            <p>항목3</p>
+        </li>
+    </ul>
+
+
+    <ol>
+        <a href="#">박스오피스</a>
+        <li>
+            <a href="#">앤트맨</a>
+        </li>
+        <li>
+            <a href="#">오션스</a>
+        </li>
+    </ol>
+
+
+    <div>
+        <h1>인접형제 선택자</h1>
+        <div>
+            <h2>큰자식</h2>
+            <p>둘쨰자식</p>
+            <a href="#">셋쨰자식</a>
+            <p>막내자식</p>
+        </div>
+    </div>
+
+</body>
+</html>

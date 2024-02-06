@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3>Canvas-2D 그리기</h3>
+
+    <canvas id="cv" width="200" height="200" style="border: 1px solid black;"></canvas>
+
+    <h3>SVG-2D 벡터 그리기</h3>
+    <svg height="200" width="200" style="border: 1px soid black;">
+        <polygon points="50,10 20,100 80,100" stroke="black" fill="red" />
+    </svg>
+
+
+    <script>
+
+        //자바스크립트로 Canvas에 도형그려보기 실습
+
+        //canvas요소를 찾는다.
+        var canvas = document.getElementById("cv");
+
+        var context = canvas.getContext("2d");
+
+        //그리기 시작해라../그리기 시작: 마우스클릭시 발생-사용자액션의 경우
+        context.beginPath();
+
+        //그리기 위치 결정(canvas내 x좌표,y좌표)
+        context.moveTo(50,10);
+
+        //상기 좌표에서 아래 선을 그리며 좌표이동
+        context.lineTo(20,100);
+        context.lineTo(80,100);
+        context.lineTo(50,10);
+
+        //실제 선을 그리기 표시
+        context.stroke();
+
+        context.fillStyle = "blue";
+
+        //영역안에 색을 채운다.
+        context.fill();
+
+    </script>
+
+
+</body>
+</html>

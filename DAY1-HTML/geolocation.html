@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>사용자 위치정보 조회하기</h1>
+
+    <button onclick="getLocation();">나의 위치 확인하기</button>
+
+    <p id="info">나의 현재 위치 표시 : 위도/경도</p>
+
+
+    <script>
+
+        var x = document.getElementById("info");
+
+        //위치정보조회 함수 
+        function getLocation(){
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        function showPosition(position){
+            x.innerHTML = `위도:${position.coords.latitude} <br> 경도:${position.coords.longitude} `;
+        }
+
+
+    </script>
+    
+</body>
+</html>

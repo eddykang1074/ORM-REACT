@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        #sample{
+            border:"1px solid blue";
+        }
+        
+        #dotted{
+            border:1px;
+            border-color: red;
+            border-style: dotted;
+        }
+
+        #dashed{
+            border-style: dashed;
+        }
+
+        #double{
+            border-style: double;
+        }
+
+        #solid{
+            border-style: solid;
+        }
+
+
+        div{
+           border-radius: 10px;
+           width:500px;
+           height:500px;
+           border:1px solid red;
+        }
+
+        p{
+            width:500px;
+            height: 300px;
+            background-color: aquamarine;
+        }
+
+
+        p{
+            /* 단일값 지정시 상우하좌 마진값이 모두 100px적용 -마진은 요소의 밖의 여백 */
+            /* 패딩 마진의 우선순위는 상우하좌 순으로 적용됨 */
+            /* margin:100px; */
+            
+            /* 상우하좌 순으로 적용됨 */
+            /* margin:100px 50px 50px 20px; */
+            /* margin-top:100px;
+            margin-right:50px;
+            margin-bottom:50px;
+            margin-left:20px; */
+
+            /* 위/아래는 5px 좌/우는 10px */
+            /* margin:5px 10px; */
+
+            /* 위는5px 좌/우는 10px 아래는 10px */
+            margin:5px 10px 10px;
+
+            padding:50px 150px 80px 80px;
+
+            border:1px solid blue;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>테두리 스타일</h1>
+    <p id="dotted">테두리 점선-dotted</p>
+    <p id="dashed">테두리 긴점선-dashed</p>
+    <p id="solid">테두리 실선-solid</p>
+    <p id="double">테두리 더블-double</p>
+
+    <p id="sample">테두리 더블-축약형</p>
+
+    <h2>여백-마진 과 패딩</h2>
+
+    <div>
+        <p>여백에 대해서 알아 봅시다</p>
+    </div>
+
+
+    <h1>태그의 크기 지정</h1>
+
+    <div>
+        안녕하세요. 반갑습니다.
+    </div>
+
+
+
+
+    
+</body>
+</html>

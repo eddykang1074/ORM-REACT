@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        body{
+            font-family: 'Black Han Sans','Times New Roman','sans-serif';
+            font-size:10px;
+        }
+
+        /* 글꼴 지정하기  */
+        h2{
+            font-family: 'Black Han Sans','Times New Roman','sans-serif';
+        }
+
+        div {
+            width:22%;
+            float:left;
+            margin:10px;
+            border:1px solid black;
+        }
+
+        /* div태그중 첫번쨰 div태그 자식요소중 h6태그의 스타일 적용 */
+        div:nth-child(1)>h6{
+            text-align:center;
+        }
+
+        div:nth-child(2)>h6{
+            text-align:right;
+        }
+
+
+        div:nth-child(3)>h6{
+            text-align:left;
+        }
+
+        /* justify옵션은  양쪾을 기준으로 늘리고 나머지 공간 중앙정렬 */
+        div:nth-child(4)>h6{
+            text-align:justify;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- <h1>스타일 기본속성 - 글자텍스트 속성</h1>
+
+
+    <h1>텍스트 색상 지정하기 </h1>
+    <h2 style="background: rgb(255,0,0);">rgb(255,0,0)방식 색상지정</h2>
+    <h2 style="background: red;">color 명칭기반 색상지정</h2>
+    <h2 style="background: #ff0000;">Hexadecimal 을 색상지정</h2>
+
+    <h2 style="color: rgb(255,0,0);">rgb(255,0,0)방식 색상지정</h2>
+    <h2  style="color: red;">color 명칭기반 색상지정</h2>
+    <h2  style="color: #ff0000;">Hexadecimal 을 색상지정</h2>
+
+
+    <h1>텍스트 정렬 처리하기 </h1> -->
+
+
+    <!-- :nth-child(N)= 부모안에 모든 요소 중 N번째 요소
+        A:nth-of-type(N)= 부모안에 A라는 요소 중 N번째 요소
+        :first-child= 부모안에 모든 요소 중 첫번째 요소
+        :last-child= 부모안에 모든 요소 중 마지막 요소
+        A:first-of-type= 부모안에 A라는 요소 중 첫번째 요소
+        A:last-of-type= 부모안에 A라는 요소 중 마지막 요소 -->
+
+    <div>
+        <p>center-중앙정렬</p>
+        <h6>
+            SK C&C는 6일 멀티 거대언어모델(LLM)과 연계해 기업에서 즉시 사용할 수 있는 맞춤형 생성형 AI 서비스 13종을 출시했다고 밝혔다.
+        </h6>
+    </div>
+
+
+
+    <div>
+        <p>center-오른쪽정렬</p>
+        <h6>
+            SK C&C는 6일 멀티 거대언어모델(LLM)과 연계해 기업에서 즉시 사용할 수 있는 맞춤형 생성형 AI 서비스 13종을 출시했다고 밝혔다.
+        </h6>
+    </div>
+
+    <div>
+        <p>center-왼쪽정렬</p>
+        <h6>
+            SK C&C는 6일 멀티 거대언어모델(LLM)과 연계해 기업에서 즉시 사용할 수 있는 맞춤형 생성형 AI 서비스 13종을 출시했다고 밝혔다.
+        </h6>
+    </div>
+
+    <div>
+        <p>center-양쪽정렬</p>
+        <h6>
+            SK C&C는 6일 멀티 거대언어모델(LLM)과 연계해 기업에서 즉시 사용할 수 있는 맞춤형 생성형 AI 서비스 13종을 출시했다고 밝혔다.
+        </h6>
+    </div>
+
+
+    <hr>
+    <h1>텍스트 꾸미기 실습</h1>
+
+    <h1 style="text-decoration: overline;">Overline</h1>
+    <h1 style="text-decoration: line-through;">Line-Through</h1>
+    <h1 style="text-decoration: underline;">Under Line</h1>
+    <h1 style="text-decoration: initial;">initial</h1>
+    <h1 style="text-decoration: none;">initial</h1>
+
+
+    <hr>
+    <h1>글꼴 속성 처리하기 </h1>
+     <h2>한글 글꼴 사용하기</h2>
+
+
+     <hr>
+     <h1>글꼴 크기 지정하기 </h1>
+     <p>글꼴 크기 테스트1</p>
+     <p style="font-size:small">글꼴 크기 테스트1</p>
+     <p style="font-size:50px">글꼴 크기 테스트2</p>
+     <p style="font-size:150%">글꼴 크기 테스트3</p>
+     <p style="font-size:1.5em">글꼴 크기 테스트4</p>
+
+     <!-- 폰트 크기는 
+     -절대폰트 크기 : 15px 15inch 15point
+     -상대폰트 크기 : 어떤 기존 크기를 기준으로 상대적으로 비율을 조정하는 방식 : em/ rem /....
+
+    em : 해당 태그의 부모의 폰트 크기가 기준폰트이구요
+    rem: 루트 요소의 기본폰트 크기 <body><최상위 div태그 기본폰트 크기>
+
+     부모/또는 웹페이지의 기본포튼 크기가  20px이라고 가정하고
+     0.5em = 20px * 05 = 10px;
+     1em = 20px * 1 = 20px;
+     2em = 20px *2 = 40px; -->
+
+</body>
+</html>

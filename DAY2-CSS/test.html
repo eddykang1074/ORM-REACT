@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <title>텍스트 정렬 실습</title>
+        <meta charset="utf-8" />
+        <style type="text/css">
+            div{
+                width: 22%;
+                float: left;
+                margin: 10px;
+                border: 1px solid black;
+            }
+
+
+            div:nth-child(1)>h6{
+                text-align: center;
+            }
+
+
+            div:nth-child(2)>h6{
+                text-align: right;
+            }
+            div:nth-child(3)>h6{
+                text-align: left;
+            }
+            div:nth-child(4)>h6{
+                text-align: justify;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- :nth-child(N)= 부모안에 모든 요소 중 N번째 요소
+        A:nth-of-type(N)= 부모안에 A라는 요소 중 N번째 요소
+        :first-child= 부모안에 모든 요소 중 첫번째 요소
+        :last-child= 부모안에 모든 요소 중 마지막 요소
+        A:first-of-type= 부모안에 A라는 요소 중 첫번째 요소
+        A:last-of-type= 부모안에 A라는 요소 중 마지막 요소 -->
+
+
+        <div>
+            <p>center-중양정렬</p>
+            <h6>
+                (1절)동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세(2절) 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세
+            </h6>
+        </div>
+
+
+        <div>
+            <p>right-오른쪽정렬</p>
+            <h6>
+                (1절)동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세(2절) 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세
+            </h6>
+        </div>
+
+
+        <div>
+            <p>left-왼쪽정렬</p>
+            <h6>
+                (1절)동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세(2절) 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세
+            </h6>
+        </div>
+
+
+        <div>
+            <p>justify-양쪽정렬</p>
+            <h6>
+                (1절)동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세(2절) 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세
+            </h6>
+        </div>
+
+
+
+        
+    </body>
+</html>
