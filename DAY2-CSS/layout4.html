@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            font-size:16px;
+        }
+
+
+        #wrapper{
+            width:98%;
+            font-size:12px;
+            margin:0 auto;
+        }
+
+        .top-header{
+            width:100%;
+            height:120px;
+            background-color: cadetblue;
+            border-bottom: 1px solid black;
+        }
+
+        .main-banner{
+            width:100%;
+            height: auto;
+        }
+
+        .main-banner img{
+            max-width: 100%;
+            height: auto;
+        }
+
+        .header-title{
+            font-size:2rem;
+            color:white;
+            text-align: center;
+            /* line-height:텍스트줄 높이 지정하기 */
+            line-height: 120px;
+        }
+
+
+        .content{
+            float:left;
+            width:62.5%;
+            height:400px;
+            padding:1.5625%;
+            background-color: gray;
+        }
+
+        .right-area{
+            float:right;
+            width:31.25%;
+            height:400px;
+            padding:1.5625%;
+            background-color: brown;
+        }
+
+        footer{
+            clear:both;
+            width:100%;
+            height:120px;
+            background-color: orange;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- 상단 GNB 메뉴영역  -->
+        <header class="top-header">
+            <h1 class="header-title">고정형 레이아웃 실습</h1>
+        </header>
+
+        <section class="main-banner">
+            <img src="http://via.placeholder.com/1920x440">
+        </section>
+
+        <!-- 중간 좌측 본문 컨텐츠영역 -->
+        <section class="content">
+            <h3>본문내용영역</h3>
+        </section>
+
+
+        <!-- 중간 우측 메뉴/광고영역  -->
+        <aside class="right-area">
+            <h3>우측메뉴-광고영역</h3>
+        </aside>
+
+
+        <!-- 하단 풋터영역 -->
+        <footer>
+            <h3>하단 풋터</h3>
+        </footer>
+
+
+    </div>
+    
+</body>
+</html>

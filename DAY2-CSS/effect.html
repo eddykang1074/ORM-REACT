@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        p{
+            border-radius: 100px;
+            width:200px;
+            height:200px;
+            background-image: url(./code.jpg);;
+        }
+
+        .linear{
+            background: red;
+            background: linear-gradient(red,yellow);
+            height:100px;
+        }
+
+        .box{
+            width:300px;
+            height:200px;
+            border:1px solid;
+            box-shadow: 10px 10px 5px gray;
+        }
+
+        .text{
+            text-shadow: 4px 4px 3px blue;
+        }
+
+        #translate{
+            transform: translate(20px,100px);
+        }
+
+        #rotate{
+            transform: rotate(50deg);
+            width:300px;
+            height: 200px;
+            border: 1px solid;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>배경이미지 둥글게표시하기</h1>
+    <p></p>
+
+    <h1>그라데이션 효과주기-선형그라데이션효과</h1>
+    <div class="linear"></div>
+
+    <h1>그림자 효과주기</h1>
+    <div class="box">box-shadow 효과</div>
+    <h1 class="text">텍스트 그림자 효과주기</h1>
+
+    <h1>요소 위치변경 및 회전 처리 </h1>
+    <div id="translate">원래 위치에서 특정위치로 이동시키기</div>
+    <div id="rotate">회전시키기</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .colorbox{
+            width:200px;
+            height:200px;
+        }
+
+        /* @media 미디어타입(모니터=screen) and or 조건식{ } */
+        @media screen and (max-width:400px){
+            /* 
+            가로폭 사이즈가  최대 400을 넘어가기전까지는 아래스타일 적용
+            현재 해상도 width값이 0- 400사이 인경우 적용할 스타일 정의   */
+            .colorbox{
+                background-color: blue;
+            }
+        }
+
+
+
+        @media screen and (min-width:400px){
+            /* 
+            해상도 가로폭이 400미만으로 떨어지기 전까지는 아래 스타일 적용
+            현재 해상도 width값이 400px~ 700px 인경우 적용할 스타일 정의   
+            */
+            .colorbox{
+                background-color:red;
+            }
+        }
+
+
+
+        @media screen and (min-width:700px){
+            /* 
+            해상도 가로폭이 700미만으로 떨어지기 전까지는 아래 스타일 적용
+            현재 해상도 width값이 700px 이상인경우 적용할 스타일 정의   */
+            .colorbox{
+                background-color: green;
+            }
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<h1>미디어쿼리 기초</h1>
+<div>
+    미디어 쿼리는 CSS로 디바이스 해상도를 감지할수 있는 기술을 기반으로
+    해상도 사이즈, 가로/세로 방향을 감지해서 적절한 스타일을 표시할수 있는 CSS기능입니다
+</div>
+    
+<div class="colorbox">해상도 크기에 따른 색상을 바꿔보자</div>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .welcome{
+            height: 100px;
+            visibility: hidden;
+        }
+
+        #first{
+            display: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1>블럭수준 HTML 요소</h1>
+    <div style="border: 1px solid black;">
+        <div class="welcome">안녕하세요. 반갑습니다. 나는 한줄을 다 잡아 먹는 블럭수준 요소중 하나입니다. -DIV</div>
+    </div>
+
+    <!-- 블럭요소를 인라인 요소처럼 작동시키기 -display:inline  -->
+    <div style="display: inline;">
+        테스트입니다. 
+    </div>
+    <span>인라인 스팬태그입니다.</span>
+    
+    <hr>   
+    <!-- 인라인 요소를 블럭 요소처럼 작동시키기 -display:block  -->
+    <span style="display:block;">인라인 스팬태그1입니다.</span>
+    <span>인라인 스팬태그2입니다.</span>
+    <span>인라인 스팬태그3입니다.</span>
+
+
+    <h1>최고로 굵기 표시되요</h1>
+    <h2>두번쨰로 굵기 표시되요</h2>
+    <p>블럭수준 요소 p태그입니다. 줄바뀜이 발생해요.</p>
+    <p>블럭수준 요소 p태그입니다. 줄바뀜이 발생해요.</p>
+
+
+    <h1>인라인 수준 HTML요소</h1>
+    <img id="first" src="./code.jpg" width="200" height="200">
+    <img src="./code.jpg" width="200" height="200">
+    <img src="./code.jpg" width="200" height="200">
+
+    <a href="#">대메뉴1</a> | <a href="#">대메뉴2</a> | <a href="#">대메뉴3</a> | <br>
+
+    <span>나는 스팬 태그에요. 인라인 수준 요소이지요.</span>
+    <span>나는 스팬 태그에요. 인라인 수준 요소이지요.</span>
+    <span>나는 스팬 태그에요. 인라인 수준 요소이지요.</span>
+    <span>나는 스팬 태그에요. 인라인 수준 요소이지요.</span>
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+    div {
+            border: solid 1px black;
+            width: 100px;
+            height: 100px;
+        }
+
+        .div1 {
+            transition: width 2s;
+        }
+
+        .div2 {
+            transition: width 4s, height 4s;
+        }
+
+        .div3 {
+            transition: width 4s, height 4s;
+            transition-delay: 1s;
+            transition-timing-function: linear;
+        }
+
+        .div1:hover {
+            width: 300px;
+        }
+
+        .div2:hover {
+            width: 300px;
+            height: 300px;
+        }
+
+        .div3:hover {
+            width: 500px;
+            height: 500px;
+        }
+
+
+        #animation{
+            width: 200px;
+            height: 200px;
+            position: relative;
+
+            /* 애니메이션 코드 */
+            animation-name: advanced;
+            animation-duration: 3s;
+            animation-iteration-count: 3;
+            animation-delay: 1s;
+            animation-timing-function: ease-in;
+
+            /* animation: advanced 3s 3 1s ease-in; */
+            background: blue;
+            left: 0px;
+            top: 200px;
+            border-radius: 100px;
+            border: solid 1px green;
+            color: white;
+            line-height: 10;
+        }
+
+
+
+        @keyframes advanced {
+            0% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+
+            25% {
+                background: yellow;
+                left: 100px;
+                top: 0px;
+            }
+
+            50% {
+                background: green;
+                left: 100px;
+                top: 100px;
+            }
+
+            75% {
+                background: blue;
+                left: 0px;
+                top: 100px;
+            }
+
+            100% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>간단한 애니메이션효과-transition기능활용</h1>
+    <div class="div1">DIV1</div>
+    <div class="div2">DIV2</div>
+    <div class="div3">DIV3</div>
+
+
+    <h1>정교한 애니메이션 효과 -animation+keyframe활용 </h1>
+    <div id="animation">고급 애니메이션 3회 반복</div>
+
+
+
+</body>
+</html>
