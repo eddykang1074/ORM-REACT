@@ -1,0 +1,13 @@
+{
+  "name": "React-First-App",
+  "version": "1.0.0",
+  "description": "수동 리액트 앱 프로젝트구성",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^3.5.2"
+  }
+}
