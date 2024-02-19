@@ -14,6 +14,10 @@ import CChild from './ClassChild'
 //내프로필 컴포넌트 참조하기
 import MyProfile from './Profile'
 
+import CounterFunction from './CounterFunctionComponent'
+
+import CounterClass from './CouterClassComponent'
+
 //함수형 컴포넌트 생성하기
 //리액트 UI컴포넌트는 반환값으로 JSX UI요소정보를 반환하여 최종 웹브라우저에 UI를 표현합니다.
 //JSX UI요소를 제어하기 위해 함수내에 기능구현 영역에서 필요한 데이터와 이벤트를 처리합니다.
@@ -60,6 +64,8 @@ function App() {
             <MyProfile userid={user.userid} name={user.name} email={user.email} telephone={user.telephone} age="마흔">
                 스테이기반 내 소개 페이지
             </MyProfile>
+            <CounterFunction></CounterFunction>
+            <CounterClass></CounterClass>
         </div>
     )
 }
