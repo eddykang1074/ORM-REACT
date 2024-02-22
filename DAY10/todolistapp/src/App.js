@@ -32,20 +32,40 @@ function App() {
   //할일고유번호 데이터 정의 및 초기값할당=원시타입정의
   const [nextId, setNextId] = useState(4);
 
+  //단일할일 정보 데이터 구조정의 및 초기값할당
+  const [todoData, setTodoData] = useState({
+    id: 0,
+    text: "",
+    desc: "",
+    checked: false,
+  });
+
   //할일등록 처리 이벤트 처리함수 정의
   //처리해야할 데이터가 존재하는 컴포넌트에서 이벤트처리함수를 정의하고 자식요소로 props를 통해 전달할수 있다.
   //자식요소에서는 전달된 이벤트 함수를 실행시킬수 있고 해당함수는 결국 부모 컴포넌트의 데이터를 변경하게된다.
   const onInsert = (text, desc) => {
     //기존배열의 복사본을 만들고 신규 객체를 추가한다.
-    //setTodos(...todos, { id: nextId, text: text, desc: desc, checked: false });
+    setTodos([
+      ...todos,
+      { id: nextId, text: text, desc: desc, checked: false },
+    ]);
 
     //할일목록 데이터에 신규할일 데이터 추가
-    setTodos(
-      todos.concat({ id: nextId, text: text, desc: desc, checked: false })
-    );
+    // setTodos(
+    //   todos.concat({ id: nextId, text: text, desc: desc, checked: false })
+    // );
 
     //다음 채번번호 증가처리
     setNextId(nextId + 1);
+  };
+
+  //수정처리
+  const onUpdate = (todo) => {
+    setTodos(
+      todos.map((to) =>
+        to.id === todo.id ? { ...to, text: todo.text, desc: todo.desc } : to
+      )
+    );
   };
 
   //특정 단일 할일정보 삭제 처리함수 정의
@@ -61,10 +81,22 @@ function App() {
     //todo목록데이터의 map()메소드를 호출해서 배열복사본을 만들고 배열복사본을 반복해서 동일한 id값이 있는 객체를 찾은후
     //동일한 객체가 있는경우 해당객체의 복사본(deepcopy)를 실시하고 복사본의 특정값도 변경해서 신규객체를 배열에 반환하고 그렇지 않으면
     //기존 복사본(shallow copy)본을 반환한다.
+
+    // setTodos(
+    //   todos.map((todo) =>
+    //     todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    //   )
+    // );
+
     setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
+      todos.map((todo) => {
+        if (todo.id === id) {
+          setTodoData(todo);
+          return { ...todo, checked: !todo.checked };
+        } else {
+          return todo;
+        }
+      })
     );
   };
 
@@ -80,7 +112,11 @@ function App() {
         <h3>총할일 : {todos.length} 건</h3>
 
         {/* 부모에서 정의된 함수(이벤트핸들러함수)도 props방식으로 자식요소에 전달이 가능하다. */}
-        <TodoRegist onInsert={onInsert}></TodoRegist>
+        <TodoRegist
+          onInsert={onInsert}
+          onUpdate={onUpdate}
+          todoData={todoData}
+        ></TodoRegist>
 
         <TodoList
           todos={todos}
