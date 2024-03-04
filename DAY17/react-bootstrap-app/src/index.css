@@ -73,7 +73,11 @@ html,
   color: #167bff;
 }
 
-.board-wrapper {
+/* .App {
+  text-align: center;
+} */
+
+.article-wrapper {
   margin-top: 80px;
   padding: 20px;
 }

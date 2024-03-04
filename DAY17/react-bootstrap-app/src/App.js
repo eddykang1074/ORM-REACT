@@ -32,9 +32,10 @@ function App() {
           <Route path="/" exact={true} Component={Login} />
           <Route path="/signin" Component={Login} />
           <Route path="/signup" Component={Register} />
+
           <Route path="/articles" Component={Articles} />
-          <Route path="/article/:aid" Component={ArticleDetail} />
           <Route path="/article" Component={Article} />
+          <Route path="/article/:aid" Component={ArticleDetail} />
         </Routes>
       </div>
     </Router>

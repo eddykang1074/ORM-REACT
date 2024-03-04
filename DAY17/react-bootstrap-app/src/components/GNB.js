@@ -21,6 +21,7 @@ const GNB = () => {
                 Sign up
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/articles">
                 Article
