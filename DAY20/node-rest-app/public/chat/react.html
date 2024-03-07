@@ -1,0 +1,70 @@
+<html>
+<body>    
+    <h1>리액트 모든 연결 사용자간 채팅</h1>
+    채팅 닉네임:<input type="text" id="nickname" value="창훈"><br>
+    전송 메시지:<input type="text" id="message" value=""><br>
+    <input type="button" id="btnSend" value="전송"><br>
+
+    <hr>
+    <ul id="chatHistory">
+    </ul>
+
+    <!-- jquery cdn 라이브러리 참조  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <!-- socket.io javascript client library CDN 방식으로 독립적으로 참조  -->
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" crossorigin="anonymous"></script>
+
+
+
+   <script>
+
+    //클라이언트(웹 브라우저) 서버 연결 소켓 객체 정의 
+    // var socket = io.connect('http://localhost:3005/');
+
+    var socket = io.connect('http://localhost:3005/',{
+        transports: ['websocket']
+    });
+
+
+    // var sampleJWTToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBNzVEMi1GQTE2RiIsImF1dGgiOiJyb2xlIiwidXNlciI6eyJ1c2VyTm0iOiLsnbTsnZjshLEiLCJjb21ObSI6IuudvOydtOyYqCIsImpvYlRpdCI6IuunpOuLiOyggCIsInRlYW0iOiLsnbjsgqwiLCJhdXRoVHlwZSI6IuyCrOyaqeyekCIsInVzZXJJZCI6IkE3NUQyLUZBMTZGIiwiYXZhcnRhUGF0aCI6Ii9ob21lL2duZXcvZGF0YS9yZXMvYXZhdGFyL0E3NUQyLUZBMTZGIn0sImlhdCI6MTY3MjE5Njk3NSwiZXhwIjoxNjc0Nzg4OTc1LCJpc3MiOiJnaW55dmFsbGV5In0.OsWQomTPsmt2SO84INvhdZKg0r2qGJc-qDdM1kJCPr0";
+
+    // var socket = io.connect(domainAddress,{
+    //     transports: ['websocket'],
+    //     auth: {
+    //         token:sampleJWTToken
+    //     }
+    // });
+
+
+    //전송 버튼 클릭 시 사용자 입력 메시지를 서버에 특정 이벤트 기능으로 전송한다.
+    $("#btnSend").click(function(){
+          var msg = $("#message").val();
+          var nickName = $("#nickname").val();
+
+          //리액트 전용 발신 데이터 포맷정의 및 데이터 저장
+          var sendMsg =
+          {
+            channel_id:0,
+            member_id:100,
+            name:nickName,
+            profile_url:"http://localhost:3005/profile/avatar1.jpg",
+            message: msg  
+          };
+
+          socket.emit("reactSend",sendMsg);
+
+    });
+
+
+    socket.on("reactReceive",function(receiveMsg){
+        console.log("메시지 수신기-데이터","receiveAll",receiveMsg);
+        $("#chatHistory").append(`<li>${receiveMsg.name}:${receiveMsg.message}</li>`);
+    });
+
+   </script>
+   
+</body>
+</html>
+
