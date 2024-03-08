@@ -4,7 +4,7 @@ import {
   LOGIN_USER,
 } from "../../constants/actionTypes";
 
-//실제 사용자 로그인처리 액션함수:사가함수
+//실제 사용자 로그인처리 액션함수:사가(axios기능포함)함수
 export const loginUser = (email, password, navigate) => ({
   type: LOGIN_USER,
   payload: { email, password, navigate },

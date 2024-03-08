@@ -16,10 +16,6 @@ const Auth = (state = INIT_STATE, action) => {
         token: action.payload.token,
         loginUser: action.payload.loginUser,
       };
-    case LOGIN_USER:
-      return {
-        ...state,
-      };
     default:
       return { ...state };
   }
