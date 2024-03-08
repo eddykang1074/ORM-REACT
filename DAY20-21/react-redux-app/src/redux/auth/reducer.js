@@ -1,5 +1,5 @@
 //액션타입 참조
-import { USER_LOGIN } from "../../constants/actionTypes";
+import { USER_LOGIN, LOGIN_USER } from "../../constants/actionTypes";
 
 //리듀서 전역데이터 관리 초기값 구조정의 및 값할당
 const INIT_STATE = {
@@ -15,6 +15,10 @@ const Auth = (state = INIT_STATE, action) => {
         ...state,
         token: action.payload.token,
         loginUser: action.payload.loginUser,
+      };
+    case LOGIN_USER:
+      return {
+        ...state,
       };
     default:
       return { ...state };

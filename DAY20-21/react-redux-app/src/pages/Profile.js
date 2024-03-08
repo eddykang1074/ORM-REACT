@@ -9,6 +9,8 @@ const Profile = () => {
   //전역데이터 공간에 로그인한 사용자 정보 가져오기
   const token = useSelector((state) => state.Auth.token);
 
+  console.log("token", token);
+
   //리덕스 스토어 전역 로그인 사용자 데이터
   const loginUser = useSelector((state) => state.Auth.loginUser);
 
@@ -22,8 +24,8 @@ const Profile = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("로그인 사용자 정보 출력", res.data.data);
-        setUser(res.data.data);
+        console.log("로그인 사용자 정보 출력", res.data);
+        setUser(res.data);
       })
       .catch((err) => {
         console.error("백엔드에러발생", err);

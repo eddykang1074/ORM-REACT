@@ -8,3 +8,9 @@ export const USER_LOGIN = "USER_LOGIN";
 
 //사용자가 테마 색상을 변경시 전역 데이터로 현재 적용된 테마색상을 관리하기 위한 액션 시나리오 정의
 export const THEME_COLOR = "THEME_COLOR";
+
+//API호출 에러 액션타입
+export const API_FAILED = "API_FAILED";
+
+//SAGA기반 로그인 처리 액션타입
+export const LOGIN_USER = "LOGIN_USER";
