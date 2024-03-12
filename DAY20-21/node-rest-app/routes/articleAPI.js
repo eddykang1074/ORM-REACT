@@ -20,6 +20,18 @@ router.get("/articles", async (req, res, next) => {
   };
 
   try {
+    // var articles = await db.Article.findAll({
+    //   attributes: [
+    //     "article_id",
+    //     "board_type_code",
+    //     "title",
+    //     "article_type_code",
+    //     "contents",
+    //     "view_count",
+    //     ["", "ischecked"],
+    //   ],
+    // });
+
     var articles = await db.Article.findAll();
 
     apiResult.code = "200";

@@ -12,6 +12,12 @@ import {
   DropdownMenu,
 } from "reactstrap";
 
+//connect객체참조
+import { connect } from "react-redux";
+
+//리덕스 액션함수 참조하기
+import { setActiveTab } from "../redux/actions";
+
 //yarn add classnames
 //조건부 스타일을 줄때 classNames 라이브러리 사용
 //https://chanhuiseok.github.io/posts/react-14/
@@ -40,7 +46,7 @@ const LeftSidebarMenu = (props) => {
   //좌측 메뉴 선택시 선택 탭정보 전역상태 반영
   const toggleTab = (tab) => {
     //props를 통해 직접 액션함수를 호출해서 사용할수 있다.-dispatch훅을 이용하지 않고 사용하는 방법
-    //props.setActiveTab(tab);
+    props.setActiveTab(tab);
   };
 
   //LayOut 전역상태내의 activeTab 전역상태값을 props에서 추출하여 현재의  전역상태내 activeTab 값을 추출한다.
@@ -85,9 +91,11 @@ const LeftSidebarMenu = (props) => {
                 <i className="ri-user-2-line"></i>
               </NavLink>
             </NavItem>
+
             <UncontrolledTooltip target="profile" placement="top">
               Profile
             </UncontrolledTooltip>
+
             <NavItem id="Chats">
               <NavLink
                 id="pills-chat-tab"
@@ -104,6 +112,7 @@ const LeftSidebarMenu = (props) => {
             <UncontrolledTooltip target="Chats" placement="top">
               Chats
             </UncontrolledTooltip>
+
             <NavItem id="Groups">
               <NavLink
                 id="pills-groups-tab"
@@ -120,6 +129,7 @@ const LeftSidebarMenu = (props) => {
             <UncontrolledTooltip target="Groups" placement="top">
               Groups
             </UncontrolledTooltip>
+
             <NavItem id="Contacts">
               <NavLink
                 id="pills-contacts-tab"
@@ -136,6 +146,7 @@ const LeftSidebarMenu = (props) => {
             <UncontrolledTooltip target="Contacts" placement="top">
               Contacts
             </UncontrolledTooltip>
+
             <NavItem id="Settings">
               <NavLink
                 id="pills-setting-tab"
@@ -262,4 +273,6 @@ const LeftSidebarMenu = (props) => {
   );
 };
 
-export default LeftSidebarMenu;
+// export default LeftSidebarMenu;
+//connect(전역데이터속성을props하위속성으로 넣어주는 함수호출, {props의 하위함수로 액션함수룰 추가해주는설정})
+export default connect(null, { setActiveTab })(LeftSidebarMenu);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -15,9 +16,10 @@ import {
   Input,
   InputGroup,
 } from "reactstrap";
+
 import SimpleBar from "simplebar-react";
 
-//use sortedContacts variable as global variable to sort contacts
+//연락처정보 목록을 알파벳 인덱스별로 정렬해서 보여주는 데이터 형식 정의
 let sortedContacts = [
   {
     group: "A",
@@ -52,10 +54,12 @@ const Contacts = () => {
     ],
   });
 
+  //모달창 닫고열때마다 실행되는 모달속성 제어 이벤트핸들러
   const toggle = () => {
     setConfig({ ...config, modal: !config.modal });
   };
 
+  //DB에서 가져온 회원정보를 A,B,C단위로 인덱스형태로 데이터를 재구성해주는 함수
   const sortContact = () => {
     let data = config.contacts.reduce((r, e) => {
       try {
@@ -81,6 +85,7 @@ const Contacts = () => {
     return result;
   };
 
+  //최초 화면 렌더링시에 딱 1번만 오리지널 데이터를 인덕스형 데이터 구조롤 변환시킨다.
   useEffect(() => {
     sortContact();
   }, []);
@@ -112,6 +117,7 @@ const Contacts = () => {
             <ModalHeader tag="h5" className="font-size-16" toggle={toggle}>
               Add Contacts
             </ModalHeader>
+
             <ModalBody className="p-4">
               <Form>
                 <div className="mb-4">
@@ -141,6 +147,7 @@ const Contacts = () => {
                 </div>
               </Form>
             </ModalBody>
+
             <ModalFooter>
               <Button type="button" color="link" onClick={toggle}>
                 Close
