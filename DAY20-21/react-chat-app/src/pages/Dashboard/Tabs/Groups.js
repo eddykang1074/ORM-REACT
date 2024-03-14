@@ -103,7 +103,7 @@ const Groups = () => {
     // since data at this point is an object, to get array of values
     // we use Object.values method
     let result = Object.values(data);
-    setConfig({ ...config, contacts: result });
+    //setConfig({ ...config, contacts: result });
     // this.setState({ contacts: result });
     sortedContacts = result;
     return result;
@@ -122,8 +122,9 @@ const Groups = () => {
     axios
       .get("http://localhost:3005/api/chat/channels")
       .then((res) => {
-        console.log("채널목록 조회 결과: ", res.data.data);
-        setConfig({ ...config, groups: res.data.data, modal: false });
+        console.log("채널목록 조회 결과: ", res.data.data, config);
+
+        setConfig({ ...config, groups: res.data.data });
       })
       .catch((err) => {
         console.error("백엔드 호출 에러 발생");
@@ -164,13 +165,16 @@ const Groups = () => {
       channelMembers: config.selectedContact,
     };
 
+    console.log("신규채널 생성 API호출하기1 ", groupData, config);
+
     axios
       .post("http://localhost:3005/api/chat/channel", groupData)
       .then((res) => {
         console.log("신규채널 생성결과:", res.data);
         if (res.data.code == "200") {
-          getChannels();
-          setConfig({ ...config, modal: !config.modal });
+          console.log("신규채널 생성 API호출하기2 ", groupData, config.modal);
+          setConfig({ ...config, modal: false });
+          //getChannels();
         }
       })
       .catch((err) => {

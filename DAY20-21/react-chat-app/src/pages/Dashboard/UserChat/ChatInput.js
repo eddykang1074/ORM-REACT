@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+
+//전역데이터 공간연결을 위해 connect/액션함수 참조하기
+import { connect } from "react-redux";
+import { setSendMessage } from "../../../redux/actions";
+
 import {
   Button,
   Input,
@@ -62,14 +67,24 @@ const ChatInput = (props) => {
     //if text value is not emptry then call onaddMessage function
     if (textMessage !== "") {
       //전역상태공간의 Chat.sendMessage 값을 갱신해야한다.
+      // var sendData = {
+      //   channel_id: 0,
+      //   member_id: props.loginUser.member_id,
+      //   name: props.loginUser.name,
+      //   profile_url: props.loginUser.profile_url,
+      //   message: textMessage,
+      // };
+
+      //전역전송 데이터 준비
       var sendData = {
         channel_id: 0,
-        member_id: props.loginUser.member_id,
-        name: props.loginUser.name,
-        profile_url: props.loginUser.profile_url,
+        member_id: 1,
+        name: "test",
+        profile_url: "/test.png",
         message: textMessage,
       };
 
+      //전역공간에 액션함수를 이용해 전역공간 전송메시지 업데이트처리
       props.setSendMessage(sendData);
 
       //사용자 메시지 입력박스내 값을 초기화해준다.
@@ -181,4 +196,11 @@ const ChatInput = (props) => {
   );
 };
 
-export default ChatInput;
+const mapStateToProps = (state) => {
+  const { sendMessage } = state.Chat;
+  const { loginUser } = state.Login;
+  return { sendMessage };
+};
+
+//export default ChatInput;
+export default connect(null, { setSendMessage })(ChatInput);

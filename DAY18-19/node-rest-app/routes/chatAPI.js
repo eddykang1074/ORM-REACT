@@ -93,7 +93,7 @@ router.post("/channel", async (req, res, next) => {
 });
 
 /* 
--마이 채널 목록 조회 REST API 라우팅 메소드 
+-마이채널 목록 조회 REST API 라우팅 메소드 
 -호출주소: http://localhost:3005/api/chat/mychannels
 -호출방식: GET
 -반환값:
@@ -106,9 +106,7 @@ router.get("/mychannels", async (req, res, next) => {
   };
 
   try {
-    let memberId = 1;
-
-    var sqlQuery = `SELECT 
+    const sqlQuery = `SELECT 
     C.channel_id,
     C.category_code,
     CASE WHEN C.category_code = 2 THEN C.channel_name ELSE (SELECT nick_name FROM channel_member WHERE channel_id=C.channel_id AND member_id != 1) END AS channel_name,
@@ -126,7 +124,7 @@ router.get("/mychannels", async (req, res, next) => {
     L.msg_date
     FROM channel C 
     INNER JOIN channel_member M
-      ON C.channel_id = M.channel_id AND M.member_id = ${memberId}
+      ON C.channel_id = M.channel_id AND M.member_id = 1
     Left Outer Join
     (
         #채널별 최근 메시지 가져오기 
@@ -143,7 +141,8 @@ router.get("/mychannels", async (req, res, next) => {
       ) AA WHERE row_num = 1
     ) L 
     ON C.channel_id = L.channel_id          
-    WHERE C.channel_state_code = 1 `;
+    WHERE C.channel_state_code = 1 
+    `;
 
     var myChannels = await sequelize.query(sqlQuery, {
       raw: true,
