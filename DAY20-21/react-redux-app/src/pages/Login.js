@@ -35,8 +35,10 @@ const Login = () => {
         window.localStorage.setItem("token", res.data.token);
 
         //리덕스 전역데이터 저장소(store)에 토큰/로그인사용자 정보 저장
-        if (res.code === "200") {
-          globalDispatch(userLogin(res.data.token, res.data.loginUser));
+        if (res.data.code === "200") {
+          globalDispatch(
+            userLogin(res.data.data.token, res.data.data.loginUser)
+          );
 
           //axio의 디폴트 사용자 인증 토큰값 바인딩 처리해주기-이후 토큰을 매번 axios에서 전달안해도 됨
           //axios.defaults.headers.common["Authorization"] = "Bearer " + res.data.data.token;

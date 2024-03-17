@@ -16,7 +16,7 @@ const Todo = (state = INIT_STATE, action) => {
     case TODO_COUNT:
       return { ...state, todoCount: action.payload.todoCount };
     default:
-      return { ...state };
+      return state;
   }
 };
 

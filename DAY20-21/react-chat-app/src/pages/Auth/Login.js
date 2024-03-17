@@ -1,6 +1,10 @@
 import React, { useCallback, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-//reactstrap은 bootstrap을 react에서 더 쉽게 사용하기 위한 부트스트랩 지원 리액트 패키지
+import { connect } from "react-redux";
+import { loginUserSuccess } from "../../redux/actions";
+
 import {
   Container,
   Row,
@@ -16,8 +20,6 @@ import {
   Label,
   InputGroup,
 } from "reactstrap";
-
-import { Link, useNavigate } from "react-router-dom";
 
 //formik은 리액트에서 form을 다루는 코드들을 쉽게 작성할 수 있도록 도와주는 패키지
 import { useFormik } from "formik";
@@ -35,24 +37,46 @@ const Login = (props) => {
   //폼 유효성검사 및 폼데이터처리
   const formik = useFormik({
     initialValues: {
-      email: "admin@themesbrand.com",
-      password: "123456",
+      email: "",
+      password: "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Username"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values) => {
-      //props.loginUser(values.email, values.password, props.router.navigate);
-
-      //STEP1: axios 기반으로 백엔드와 연동하여 로그인처리한다.
-      //STEP2: 메일주소와 암호가 다른경우에 대한 예외처리 와 정상 로그인시 발급된 토큰값을 웹브라우저의 로컬스토리지에 저장한다.
-      //STEP3: 로그인한 사용자 토큰정보를 리덕스 전역상태영역에 저장갱신한다.
-
       var loginData = {
         email: values.email,
         password: values.password,
       };
+
+      axios
+        .post("http://localhost:3005/api/member/login", loginData)
+        .then((res) => {
+          console.log("로그인 결과값 확인:", res.data);
+
+          //웹브라우저 로컬스토리지에 사용자 인증토큰 저장
+          localStorage.setItem("authToken", res.data.data.token);
+
+          //리덕스 전역데이터 저장소(store)에 토큰/로그인사용자 정보 저장
+          if (res.data.code === "200") {
+            //전역 데이터 업데이트
+            props.loginUserSuccess(
+              res.data.data.token,
+              res.data.data.loginUser
+            );
+
+            //axio의 디폴트 사용자 인증 토큰값 바인딩 처리해주기-이후 토큰을 매번 axios에서 전달안해도 됨
+            axios.defaults.headers.common["Authorization"] =
+              "Bearer " + res.data.data.token;
+
+            //로그인한 사용자의 프로필 페이지로 이동시키기
+            navigate("/dashboard");
+          }
+        })
+        .catch((err) => {
+          console.error("백엔드 호출 에러발생");
+        });
     },
   });
 
@@ -212,4 +236,6 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+//export default Login;
+
+export default connect(null, { loginUserSuccess })(Login);

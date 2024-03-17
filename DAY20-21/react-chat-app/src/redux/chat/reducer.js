@@ -34,7 +34,7 @@ const Chat = (state = INIT_STATE, action) => {
         receiveMessage: action.payload,
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 

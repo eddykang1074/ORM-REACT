@@ -17,7 +17,7 @@ const Auth = (state = INIT_STATE, action) => {
         loginUser: action.payload.loginUser,
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 

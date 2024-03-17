@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -42,14 +42,21 @@ const Register = () => {
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values) => {
-      //props.loginUser(values.email, values.password, props.router.navigate);
-
       //회원가입 처리 axios 기능 구현하기
       var memberData = {
         email: values.email,
         name: values.username,
         password: values.password,
       };
+
+      axios
+        .post("http://localhost:3005/api/member/entry", memberData)
+        .then((res) => {
+          navigate("/login");
+        })
+        .catch((err) => {
+          console.error("백엔드 호출에러 발생");
+        });
     },
   });
 

@@ -23,7 +23,7 @@ import AuthLayout from "../layouts/AuthLayout";
 //로그인여부를 체크한후에 인증되었을때만 보여줘야하는 주소를 호출한경우 로그인 페이지로 반환하는 함수 정의
 const AuthProtected = (props) => {
   //로그인한 사용자 JWT토큰이 없거나 현재 호출하는 페이지가 인증에 의해 보호되는 페이지인경우 로그인페이지로 이동시킴
-  if (props.isAuthProtected && !localStorage.getItem("jwttoken")) {
+  if (props.isAuthProtected && !localStorage.getItem("authToken")) {
     return (
       <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
     );
@@ -54,7 +54,7 @@ const Routes = () => {
 
           {/* 인증이 반드시 필요한 페이지 라우팅 컴포넌트에 대한 레이아웃 통합적용하기
                     각각의 페이지컴포넌트를 로그인여부/인증여부를 체크해 비로그인인경우 로그인 페이지로 이동처리하는 로직추가적용 */}
-          {authProtectedRoutes.map((route, idx) => (
+          {/* {authProtectedRoutes.map((route, idx) => (
             <Route
               path={route.path}
               layout={AuthLayout}
@@ -62,9 +62,9 @@ const Routes = () => {
               key={idx}
               isAuthProtected={true}
             />
-          ))}
+          ))} */}
 
-          {/* {authProtectedRoutes.map((route, idx) => (
+          {authProtectedRoutes.map((route, idx) => (
             <Route
               path={route.path}
               layout={AuthLayout}
@@ -76,7 +76,7 @@ const Routes = () => {
               key={idx}
               isAuthProtected={true}
             />
-          ))} */}
+          ))}
         </SwitchRoute>
       </Suspense>
     </React.Fragment>

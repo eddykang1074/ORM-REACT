@@ -8,6 +8,9 @@ export const LOGIN_USER = "LOGIN_USER";
 //로그인한 사용자 정보를 전역데이터로 관리하기 위한 시나리오 구현
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 
+//로그아웃 완료 후 로그인 전역상태 정보 업데이터 처리
+export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
+
 //API호출 에러 액션타입
 export const API_FAILED = "API_FAILED";
 

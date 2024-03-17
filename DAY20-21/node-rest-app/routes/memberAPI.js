@@ -36,7 +36,7 @@ router.post("/entry", async (req, res) => {
       email,
       member_password: encryptedPassword,
       name,
-      profile_img_path: "",
+      profile_img_path: "http://localhost:3005/profile/avatar1.jpg",
       telephone: "",
       entry_type_code: 0,
       use_state_code: 1,

@@ -13,17 +13,25 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 //Redux Saga사용시 스토어 구성하기
-import { configureStore } from "./redux/store";
+// import { configureStore } from "./redux/store";
 
 //리덕스 기초 스토어 참조하기
-//import store from "./redux/store";
+import store from "./redux/store";
+
+//전역정보 웹브라우저 스토리지에 저장하기 위한 redux-persist 추가설정
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+export let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
-  <Provider store={configureStore()}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>
 );
 
