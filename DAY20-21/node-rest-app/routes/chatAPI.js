@@ -106,6 +106,9 @@ router.get("/mychannels", async (req, res, next) => {
   };
 
   try {
+    //현재 로그인한 사용자정보는 req.header의 jwt인증 토큰값을 기반으로
+    //로그인한 사용자 정보를 조회해옵니다.
+
     let memberId = 1;
 
     var sqlQuery = `SELECT 
