@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, InputGroup } from "reactstrap";
 import { Link } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { setCurrentChannel } from "../../../redux/actions";
+
+import axios from "axios";
 
 //simplebar
 //yarn add simplebar-react
@@ -13,58 +18,26 @@ const Chats = (props) => {
   //채팅대장자 정보조회 키워드 와 최근 채팅대상자 데이터 상태값 정의
   const [chatBar, setChatBar] = useState({
     searchChat: "조회",
-    recentChatList: props.recentChatList,
+    myChatList: [],
   });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3005/api/chat/mychannels")
+      .then((res) => {
+        console.log("내 채팅방 목록 조회결과:", res.data);
+        setChatBar({ ...chatBar, myChatList: res.data.data });
+      })
+      .catch((err) => {
+        console.log("백엔드 호출 에러 발생");
+      });
+  }, []);
 
   //채팅 대상자 목록에서 특정 채팅방을 클릭하며 우측에 채팅화면을 표시해줌
   const openUserChat = (e, chat) => {
-    console.log("선택한 채팅 채널정보============", chat);
-
     e.preventDefault();
-
-    //find index of current chat in array
-    var index = props.recentChatList.indexOf(chat);
-    console.log("선택한 채팅 채널정보index============", index);
-
-    // set activeUser
-    props.activeUser(index);
-
-    var chatList = document.getElementById("chat-list");
-    var clickedItem = e.target;
-    var currentli = null;
-
-    if (chatList) {
-      var li = chatList.getElementsByTagName("li");
-      //remove coversation user
-      for (var i = 0; i < li.length; ++i) {
-        if (li[i].classList.contains("active")) {
-          li[i].classList.remove("active");
-        }
-      }
-      //find clicked coversation user
-      for (var k = 0; k < li.length; ++k) {
-        if (li[k].contains(clickedItem)) {
-          currentli = li[k];
-          break;
-        }
-      }
-    }
-
-    //activation of clicked coversation user
-    if (currentli) {
-      currentli.classList.add("active");
-    }
-
-    var userChat = document.getElementsByClassName("user-chat");
-    if (userChat) {
-      userChat[0].classList.add("user-chat-show");
-    }
-
-    //removes unread badge if user clicks
-    var unread = document.getElementById("unRead" + chat.id);
-    if (unread) {
-      unread.style.display = "none";
-    }
+    console.log("현재 선택한 채널 정보 출력", chat);
+    props.setCurrentChannel(chat);
   };
 
   return (
@@ -101,7 +74,7 @@ const Chats = (props) => {
               className="list-unstyled chat-list chat-user-list px-2"
               id="chat-list"
             >
-              {chatBar.recentChatList.map((chat, key) => (
+              {chatBar.myChatList.map((chat, key) => (
                 <li
                   key={key}
                   id={"conversation" + key}
@@ -117,7 +90,7 @@ const Chats = (props) => {
                 >
                   <Link to="#" onClick={(e) => openUserChat(e, chat)}>
                     <div className="d-flex">
-                      {chat.profilePicture === "Null" ? (
+                      {chat.category_code === 2 ? (
                         <div
                           className={
                             "chat-user-img " +
@@ -127,7 +100,7 @@ const Chats = (props) => {
                         >
                           <div className="avatar-xs">
                             <span className="avatar-title rounded-circle bg-primary-subtle text-primary">
-                              {chat.name.charAt(0)}
+                              {chat.channel_name.charAt(0)}
                             </span>
                           </div>
                           {chat.status && <span className="user-status"></span>}
@@ -141,7 +114,7 @@ const Chats = (props) => {
                           }
                         >
                           <img
-                            src={chat.profilePicture}
+                            src={chat.channel_img_path}
                             className="rounded-circle avatar-xs"
                             alt="chatvia"
                           />
@@ -151,10 +124,10 @@ const Chats = (props) => {
 
                       <div className="flex-grow-1 overflow-hidden">
                         <h5 className="text-truncate font-size-15 mb-1 ms-3">
-                          {chat.name}
+                          {chat.channel_name}
                         </h5>
                         <p className="chat-user-message font-size-14 text-truncate mb-0 ms-3">
-                          {chat.isTyping ? (
+                          {chat.is_typing ? (
                             <>
                               typing
                               <span className="animate-typing">
@@ -164,39 +137,20 @@ const Chats = (props) => {
                               </span>
                             </>
                           ) : (
-                            <>
-                              {chat.messages &&
-                              chat.messages.length > 0 &&
-                              chat.messages[chat.messages.length - 1]
-                                .isImageMessage === true ? (
-                                <i className="ri-image-fill align-middle me-1"></i>
-                              ) : null}
-                              {chat.messages &&
-                              chat.messages.length > 0 &&
-                              chat.messages[chat.messages.length - 1]
-                                .isFileMessage === true ? (
-                                <i className="ri-file-text-fill align-middle me-1"></i>
-                              ) : null}
-                              {chat.messages && chat.messages.length > 0
-                                ? chat.messages[chat.messages.length - 1]
-                                    .message
-                                : null}
-                            </>
+                            <>{chat.message ? chat.message : null}</>
                           )}
                         </p>
                       </div>
                       <div className="font-size-11">
-                        {chat.messages && chat.messages.length > 0
-                          ? chat.messages[chat.messages.length - 1].time
-                          : null}
+                        {chat.message.length > 0 ? chat.msg_date : null}
                       </div>
                       {chat.unRead === 0 ? null : (
-                        <div className="unread-message" id={"unRead" + chat.id}>
+                        <div className="unread-message">
                           <span className="badge badge-soft-danger rounded-pill">
-                            {chat.messages && chat.messages.length > 0
-                              ? chat.unRead >= 20
-                                ? chat.unRead + "+"
-                                : chat.unRead
+                            {chat.message && chat.message.length > 0
+                              ? chat.not_yet_cnt >= 20
+                                ? chat.not_yet_cnt + "+"
+                                : chat.not_yet_cnt
                               : ""}
                           </span>
                         </div>
@@ -214,4 +168,5 @@ const Chats = (props) => {
   );
 };
 
-export default Chats;
+//export default Chats;
+export default connect(null, { setCurrentChannel })(Chats);

@@ -63,6 +63,7 @@ const ChatInput = (props) => {
   //신규 메시지를 리덕스 전역데이터의 Chat.sendMessage 값을 수정해준다.
   const onaddMessage = (e, textMessage) => {
     e.preventDefault();
+    console.log("메시지가 발송되었습니다.................");
 
     //if text value is not emptry then call onaddMessage function
     if (textMessage !== "") {
@@ -77,10 +78,10 @@ const ChatInput = (props) => {
 
       //전역전송 데이터 준비
       var sendData = {
-        channel_id: 0,
-        member_id: 1,
-        name: "test",
-        profile_url: "/test.png",
+        channel_id: props.currentChannel.channel_id,
+        member_id: props.loginUser.member_id,
+        name: props.loginUser.name,
+        profile_url: props.loginUser.profile_img_path,
         message: textMessage,
       };
 
@@ -197,10 +198,10 @@ const ChatInput = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { sendMessage } = state.Chat;
-  const { loginUser } = state.Login;
-  return { sendMessage };
+  const { sendMessage, currentChannel } = state.Chat;
+  const { token, loginUser } = state.Auth;
+  return { sendMessage, currentChannel, loginUser, token };
 };
 
 //export default ChatInput;
-export default connect(null, { setSendMessage })(ChatInput);
+export default connect(mapStateToProps, { setSendMessage })(ChatInput);

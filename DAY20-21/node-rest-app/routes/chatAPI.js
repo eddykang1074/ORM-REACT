@@ -122,8 +122,9 @@ router.get("/mychannels", async (req, res, next) => {
     (SELECT COUNT(*) FROM channel_msg WHERE channel_id = C.channel_id AND 
     msg_date > (SELECT IFNULL(M1.last_out_date,M1.edit_date) FROM channel_member M1 WHERE M1.channel_id = C.channel_id AND M1.member_id =1 AND M1.ACTIVE_STATE_CODE = 0)
     AND msg_type_code ='2') AS not_yet_cnt,
-    L.message,
-    L.msg_date
+    IFNULL(L.message,'') AS message,
+    IFNULL(L.msg_date,'') AS msg_date,
+    0 as is_typing 
     FROM channel C 
     INNER JOIN channel_member M
       ON C.channel_id = M.channel_id AND M.member_id = ${memberId}

@@ -32,3 +32,6 @@ export const CHAT_SEND_MSG = "CHAT_SEND_MSG";
 
 //서버소켓에서 수신 메시지를 전역에 저장하는 시나리오 구현
 export const CHAT_RECEIVE_MSG = "CHAT_RECEIVE_MSG";
+
+//내 채널목록에서 채널선택시 해당 채팅방 채널 접속 및 최신 메시지 출력 시나리오 구현
+export const CHAT_CURRENT_CHANNEL = "CHAT_CURRENT_CHANNEL";
